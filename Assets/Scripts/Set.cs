@@ -6,10 +6,12 @@ using UnityEngine;
 
 public class Set : MonoBehaviour
 {
-    public interface IEnumerable<out T>: System.Collections.IEnumerable
+    public List<Vector3Int> set;
+
+    /*public interface IEnumerable<out T>: System.Collections.IEnumerable
     {
         //public List<T> set;
-    }
+    }*/
     //
 
 
