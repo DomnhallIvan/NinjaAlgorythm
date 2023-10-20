@@ -49,8 +49,8 @@ public class FloodFill : MonoBehaviour
             foreach (Vector3Int neighbors in getNeighbours(current))
             {
                 //Aquí pongo Early Exit
-               
-                if (!came_from.ContainsKey(neighbors))
+
+                if ( !came_from.ContainsKey(neighbors))
                 {
                     if (neighbors != null&& tM.GetSprite(neighbors) != null)
                     {
