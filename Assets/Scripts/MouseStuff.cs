@@ -9,7 +9,9 @@ public class MouseStuff : MonoBehaviour
     public FloodFill fF;
     public Tile tile1; //tileStart
     public Tile tileJimmyM; //tileEnd
-
+    public Tile tileFill;
+    public Vector3Int _start;
+    public Vector3Int _end;
 
 
     private void Update()
@@ -21,15 +23,28 @@ public class MouseStuff : MonoBehaviour
 
         if(Input.GetMouseButtonDown(0) && tM.GetSprite(location) != null)
         {
-            
+           if(_end != location && tM.GetSprite(location) != null)
+            {
+                tM.SetTile(_end, tileFill);
+            }
             Debug.Log(location);
             tM.SetTile(location, tile1);
+            _end = location;
+            
         }
-        if(Input.GetMouseButtonDown(1)&&tM.GetSprite(location)!=null)
+        
+
+
+        if (Input.GetMouseButtonDown(1)&&tM.GetSprite(location)!=null)
         {
+            if (_start != location && tM.GetSprite(location) != null)
+            {
+                tM.SetTile(_start, tileFill);
+            }
             Debug.Log(location + "Origen");
             fF.startingPoint = location;
             tM.SetTile(location, tileJimmyM);
+            _start = location;
 
         }
     }

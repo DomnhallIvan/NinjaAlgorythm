@@ -11,7 +11,16 @@ public class FloodFill : MonoBehaviour
     public Vector3Int startingPoint;
     public Set reached = new Set();
     public Tile tile1;
+    public Tile tileFill;
+    private Dictionary<Vector3Int, Vector3Int> came_from = new Dictionary<Vector3Int, Vector3Int>();
+    private Vector3Int previous;
 
+    public MouseStuff mouseStuff;
+
+    private void Start()
+    {
+       
+    }
 
     public void Update()
     {
@@ -30,20 +39,32 @@ public class FloodFill : MonoBehaviour
         while (frontier.Count > 0)
         {
             Vector3Int current = frontier.Dequeue();
+
+            
+            if (current == mouseStuff._end)
+            {
+                break;
+            }
+
             foreach (Vector3Int neighbors in getNeighbours(current))
             {
-                if (!reached.set.Contains(neighbors))
+                //Aquí pongo Early Exit
+               
+                if (!came_from.ContainsKey(neighbors))
                 {
                     if (neighbors != null&& tM.GetSprite(neighbors) != null)
                     {
                         AddReached(neighbors);
                         frontier.Enqueue(neighbors);
-                        tM.SetTile(neighbors,tile1);
-
+                        tM.SetTile(neighbors,tileFill);
+                        came_from[neighbors] = current;
+                       
+                        //dicTionary.Add(neighbors) = current;
                     }
                 }
             }
         }
+        DrawPath(mouseStuff._end);
     }
 
     List<Vector3Int> getNeighbours(Vector3Int current)
@@ -70,4 +91,16 @@ public class FloodFill : MonoBehaviour
         reached.set.Add(Reached);
     }
 
+
+    public void DrawPath(Vector3Int xd)
+    {
+        previous = came_from[mouseStuff._end];
+        mouseStuff.tM.SetTile(mouseStuff._end, tile1);
+
+        while (previous!=mouseStuff._start)
+        {
+            mouseStuff.tM.SetTile(previous, tile1);
+            previous = came_from[previous];
+        }
+    }
 }
