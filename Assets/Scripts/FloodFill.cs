@@ -13,14 +13,9 @@ public class FloodFill : MonoBehaviour
     public Tile tile1;
     public Tile tileFill;
     private Dictionary<Vector3Int, Vector3Int> came_from = new Dictionary<Vector3Int, Vector3Int>();
-    private Vector3Int previous;
+    private Vector3Int _previous;
 
     public MouseStuff mouseStuff;
-
-    private void Start()
-    {
-       
-    }
 
     public void Update()
     {
@@ -40,7 +35,7 @@ public class FloodFill : MonoBehaviour
         {
             Vector3Int current = frontier.Dequeue();
 
-            
+            //Aquí pongo Early Exit
             if (current == mouseStuff._end)
             {
                 break;
@@ -48,7 +43,7 @@ public class FloodFill : MonoBehaviour
 
             foreach (Vector3Int neighbors in getNeighbours(current))
             {
-                //Aquí pongo Early Exit
+                
 
                 if ( !came_from.ContainsKey(neighbors))
                 {
@@ -94,13 +89,13 @@ public class FloodFill : MonoBehaviour
 
     public void DrawPath(Vector3Int xd)
     {
-        previous = came_from[mouseStuff._end];
+        _previous = came_from[mouseStuff._end];
         mouseStuff.tM.SetTile(mouseStuff._end, tile1);
 
-        while (previous!=mouseStuff._start)
+        while (_previous!=mouseStuff._start)
         {
-            mouseStuff.tM.SetTile(previous, tile1);
-            previous = came_from[previous];
+            mouseStuff.tM.SetTile(_previous, tile1);
+            _previous = came_from[_previous];
         }
     }
 }
