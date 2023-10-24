@@ -4132,6 +4132,7 @@ MonoBehaviour:
   reached: {fileID: 190804951}
   tile1: {fileID: 11400000, guid: 5715cb2604d51b14181f0268de22162a, type: 2}
   tileFill: {fileID: 11400000, guid: 9ccdb69a9294b1f4b9c60c40dc5a3e7c, type: 2}
+  tileMontain: {fileID: 11400000, guid: 65ce3f0b9bc92b448af48b66c4dddbc7, type: 2}
   mouseStuff: {fileID: 519420033}
 --- !u!4 &190804950
 Transform:
@@ -4260,6 +4261,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tM: {fileID: 114671753}
   fF: {fileID: 190804949}
+  Dj: {fileID: 0}
   tile1: {fileID: 11400000, guid: 5715cb2604d51b14181f0268de22162a, type: 2}
   tileJimmyM: {fileID: 11400000, guid: fd22942ca353b1b4bbb8d01a0fee7142, type: 2}
   tileFill: {fileID: 11400000, guid: 9ccdb69a9294b1f4b9c60c40dc5a3e7c, type: 2}

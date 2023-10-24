@@ -7,6 +7,7 @@ public class MouseStuff : MonoBehaviour
 {
     public Tilemap tM;
     public FloodFill fF;
+    public Djztrack Dj;
     public Tile tile1; //tileStart
     public Tile tileJimmyM; //tileEnd
     public Tile tileFill;
@@ -43,6 +44,7 @@ public class MouseStuff : MonoBehaviour
             }
             Debug.Log(location + "Origen");
             fF.startingPoint = location;
+            Dj.tileCord = location;
             tM.SetTile(location, tileJimmyM);
             _start = location;
 
