@@ -4108,6 +4108,7 @@ GameObject:
   - component: {fileID: 190804950}
   - component: {fileID: 190804949}
   - component: {fileID: 190804951}
+  - component: {fileID: 190804952}
   m_Layer: 0
   m_Name: FloodFill
   m_TagString: Untagged
@@ -4122,7 +4123,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 190804948}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2556fe5806b56ed43940ecad18967996, type: 3}
   m_Name: 
@@ -4162,6 +4163,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   set: []
+--- !u!114 &190804952
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 190804948}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 65724822f34cfc049b39452899935cf9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tM: {fileID: 114671753}
+  startingPoint: {x: 0, y: 0, z: 0}
+  tileCord: {x: 0, y: 0, z: 0}
+  reached: {fileID: 190804951}
+  tiles:
+  - {fileID: 11400000, guid: fd22942ca353b1b4bbb8d01a0fee7142, type: 2}
+  - {fileID: 11400000, guid: 339f57e7f851ad649b9458c5db99f4af, type: 2}
+  - {fileID: 11400000, guid: 5715cb2604d51b14181f0268de22162a, type: 2}
+  mouseStuff: {fileID: 519420033}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
