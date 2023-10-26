@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.Tilemaps;
 using static UnityEditor.FilePathAttribute;
 using ESarkis;
+using static UnityEditor.Experimental.GraphView.GraphView;
 
 public class Djztrack : MonoBehaviour
 {
@@ -14,22 +15,28 @@ public class Djztrack : MonoBehaviour
     public Vector3Int startingPoint;
     public Vector3Int tileCord;
     public Set reached = new Set();
-    public Tile tile1;
-    public Tile tileFill;
-    public Tile tileMontain;
+    public List<Tile> tiles;
+  //  public Tile tile1;
+   // public Tile tileFill;
+   // public Tile tileMontain;
     private Dictionary<Vector3Int, Vector3Int> came_from = new Dictionary<Vector3Int, Vector3Int>();
     private Dictionary<Vector3Int, Vector3Int> cost_so_far = new Dictionary<Vector3Int, Vector3Int>();
-    private Dictionary<string, double> costo = new Dictionary<string, double>();
-    private string name2 = "";
+    public Dictionary<TileBase, int> TileCost= new Dictionary<TileBase, int>();
+    // private string tileString;
+   // private double costo;   
+   //  private Dictionary<string, double> costo = new Dictionary<string, double>();
+   
+    
+    // private string name2 = "";
     private Vector3Int _previous;
 
     public MouseStuff mouseStuff;
 
     private void Start()
     {
-        costo.Add("isometric_pixel_0163", 0);
-        costo.Add("isometric_pixel_0168", 2);
-        costo.Add("isometric_pixel_0171", 5);
+        TileCost.Add(tiles[0], 0);
+        TileCost.Add(tiles[1], 2);
+        TileCost.Add(tiles[2], 5);
     }
 
     private void Update()
@@ -69,7 +76,7 @@ public class Djztrack : MonoBehaviour
                     {
                         AddReached(neighbors);
                         frontier.Enqueue(neighbors, 0);
-                        tM.SetTile(neighbors, tileFill);
+                        tM.SetTile(neighbors, tiles[0]);
                         came_from[neighbors] = current;
                         //dicTionary.Add(neighbors) = current;
                     }
@@ -107,22 +114,65 @@ public class Djztrack : MonoBehaviour
     public void DrawPath(Vector3Int xd)
     {
         _previous = came_from[mouseStuff._end];
-        mouseStuff.tM.SetTile(mouseStuff._end, tile1);
+        mouseStuff.tM.SetTile(mouseStuff._end, tiles[1]);
 
         while (_previous != mouseStuff._start)
         {
-            mouseStuff.tM.SetTile(_previous, tile1);
+            mouseStuff.tM.SetTile(_previous, tiles[1]);
             _previous = came_from[_previous];
         }
     }
 
-    private void Costos(string nombre,double coordenada)
+    private int Costos(Vector3Int neighbour)
     {
-     
+
         //Obtengo el Sprite del Tile
-        TileBase TileBase =mouseStuff.tM.GetTile(Vector3Int.RoundToInt(tileCord));
+        // TileBase TileBase =mouseStuff.tM.GetTile(Vector3Int.RoundToInt(tileCord));
         //Lo Añado al Diccionario????, pero cómo defino el valor de double dependiendo de la coordenada?
-        costo.Add(TileBase.ToString(), 0);
+        //costo.Add(TileBase.ToString(), 0);
+        //costo =[("isometric_pixel_0163", 0)];
+        //if(tM.GetTile(neighbour)==null)
+
+        //costo.Add("isometric_pixel_0163", 0);
+        //costo.Add("isometric_pixel_0168", 2);
+        // costo.Add("isometric_pixel_0171", 5);
+
+        //Obtengo la coordenada del Tile
+        TileBase tile = tM.GetTile(neighbour);
+
+        //Comparo el tile que obtuve con el Diccionario que tengo y regreso el valor de dicho tile
+        if (TileCost.TryGetValue(tile,out int cost))
+        {
+            return cost;
+        }
+
+
+        return 10000;
+
 
     }
+
+
+    /*
+    public List<TileBase> TileBases;
+
+
+    private int GetCost(Vector3Int neighbour)
+    {
+        if (tiles.GetTile(neighbour) == TileBases[0])
+        {
+            return 1;
+        }
+        if (tiles.GetTile(neighbour) == TileBases[1])
+        {
+            return 30;
+        }
+        if (tiles.GetTile(neighbour) == TileBases[2])
+        {
+            return 100;
+        }
+
+        return 10000;
+    }*/
+
 }

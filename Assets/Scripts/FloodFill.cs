@@ -106,7 +106,7 @@ public class FloodFill : MonoBehaviour
         }
     }
 
-    private void Costos(double coordenada)
+    private void Costos(double coordenadas)
     {
         //Obtener nombre del sprite del Tile que voy a recibir en la funcion, recibo coordenada para obtener su nombre
 
