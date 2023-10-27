@@ -52,7 +52,7 @@ public class Djztrack : MonoBehaviour
     void CumJar()
     {
         came_from.Add(startingPoint, startingPoint);
-        came_from.Add(mouseStuff._end, mouseStuff._end);
+        //came_from.Add(mouseStuff._end, mouseStuff._end);
         frontier.Enqueue(startingPoint, 0);
         cost_so_far[startingPoint]=0;
         //Funcion que devuelva lista de Vector3.int, a partir de current
@@ -85,7 +85,7 @@ public class Djztrack : MonoBehaviour
                             cost_so_far[neighbors] = new_cost;
                             float priority = new_cost; 
                             frontier.Enqueue(neighbors,priority);
-                            tM.SetTile(neighbors, tileFill);
+                           // tM.SetTile(neighbors, tileFill);
                             came_from.Add(neighbors,current);
                             //dicTionary.Add(neighbors) = current;
                         }
