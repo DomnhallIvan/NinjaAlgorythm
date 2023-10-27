@@ -42,7 +42,7 @@ public class MouseStuff : MonoBehaviour
             {
                 tM.SetTile(_start, tileFill);
             }
-            Debug.Log(location + "Origen");
+           // Debug.Log(location + "Origen");
             fF.startingPoint = location;
             Dj.tileCord = location;
             tM.SetTile(location, tileJimmyM);

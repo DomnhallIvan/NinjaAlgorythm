@@ -4178,11 +4178,12 @@ MonoBehaviour:
   tM: {fileID: 114671753}
   startingPoint: {x: 0, y: 0, z: 0}
   tileCord: {x: 0, y: 0, z: 0}
+  tile1: {fileID: 11400000, guid: 5715cb2604d51b14181f0268de22162a, type: 2}
+  tileFill: {fileID: 11400000, guid: 9ccdb69a9294b1f4b9c60c40dc5a3e7c, type: 2}
   reached: {fileID: 190804951}
-  tiles:
-  - {fileID: 11400000, guid: fd22942ca353b1b4bbb8d01a0fee7142, type: 2}
-  - {fileID: 11400000, guid: 339f57e7f851ad649b9458c5db99f4af, type: 2}
-  - {fileID: 11400000, guid: 5715cb2604d51b14181f0268de22162a, type: 2}
+  pasto: {fileID: 11400000, guid: 10f756de48c629d4e8727b1bdc813c2d, type: 2}
+  arena: {fileID: 11400000, guid: fd255189f39922240abe49e1c0b77410, type: 2}
+  veneno: {fileID: 11400000, guid: bd2858b920c1cdc49b4dd2cdb2526e96, type: 2}
   mouseStuff: {fileID: 519420033}
 --- !u!1 &519420028
 GameObject:
@@ -4283,7 +4284,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tM: {fileID: 114671753}
   fF: {fileID: 190804949}
-  Dj: {fileID: 0}
+  Dj: {fileID: 190804952}
   tile1: {fileID: 11400000, guid: 5715cb2604d51b14181f0268de22162a, type: 2}
   tileJimmyM: {fileID: 11400000, guid: fd22942ca353b1b4bbb8d01a0fee7142, type: 2}
   tileFill: {fileID: 11400000, guid: 9ccdb69a9294b1f4b9c60c40dc5a3e7c, type: 2}

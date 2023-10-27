@@ -10,33 +10,32 @@ public class Djztrack : MonoBehaviour
 {
 
     public Tilemap tM;
-    [SerializeField] private PriorityQueue<Vector3Int> frontier = new();
-    /// private class PriorityQueue<Vector3Int,int>frontier=new Queue<Vector3Int>();
+    [SerializeField] private PriorityQueue<Vector3Int> frontier = new PriorityQueue<Vector3Int>();
     public Vector3Int startingPoint;
     public Vector3Int tileCord;
+    public Tile tile1;
+    public Tile tileFill;
     public Set reached = new Set();
-    public List<Tile> tiles;
-  //  public Tile tile1;
-   // public Tile tileFill;
-   // public Tile tileMontain;
-    private Dictionary<Vector3Int, Vector3Int> came_from = new Dictionary<Vector3Int, Vector3Int>();
-    private Dictionary<Vector3Int, Vector3Int> cost_so_far = new Dictionary<Vector3Int, Vector3Int>();
-    public Dictionary<TileBase, int> TileCost= new Dictionary<TileBase, int>();
-    // private string tileString;
-   // private double costo;   
-   //  private Dictionary<string, double> costo = new Dictionary<string, double>();
+    public TileBase pasto;
+    public TileBase arena;
+    public TileBase veneno;
    
     
-    // private string name2 = "";
+    
+    private Dictionary<Vector3Int, Vector3Int> came_from = new Dictionary<Vector3Int, Vector3Int>();
+    private Dictionary<Vector3Int, int> cost_so_far = new Dictionary<Vector3Int, int>();
+    public Dictionary<TileBase, int> TileCost= new Dictionary<TileBase, int>();  
     private Vector3Int _previous;
 
     public MouseStuff mouseStuff;
 
     private void Start()
     {
-        TileCost.Add(tiles[0], 0);
-        TileCost.Add(tiles[1], 2);
-        TileCost.Add(tiles[2], 5);
+        //&came_from.Add(startingPoint,startingPoint);
+        //cost_so_far.Add(startingPoint, 0);
+        TileCost.Add(pasto, 1);
+        TileCost.Add(arena, 5);
+        TileCost.Add(veneno, 8);
     }
 
     private void Update()
@@ -52,8 +51,10 @@ public class Djztrack : MonoBehaviour
     }
     void CumJar()
     {
+        came_from.Add(startingPoint, startingPoint);
+        came_from.Add(mouseStuff._end, mouseStuff._end);
         frontier.Enqueue(startingPoint, 0);
-        cost_so_far.ContainsKey(startingPoint);
+        cost_so_far[startingPoint]=0;
         //Funcion que devuelva lista de Vector3.int, a partir de current
         while (frontier.Count > 0)
         {
@@ -67,23 +68,35 @@ public class Djztrack : MonoBehaviour
 
             foreach (Vector3Int neighbors in getNeighbours(current))
             {
-
-
-                if (!came_from.ContainsKey(neighbors))
+                if(neighbors==null)
                 {
-                    //if next not in _came_from:
-                    if (neighbors != null && tM.GetSprite(neighbors) != null)
+                    continue;
+                }
+                var new_cost = cost_so_far[current] + Costos(neighbors);
+                if (!cost_so_far.ContainsKey(neighbors) || new_cost <cost_so_far[current])
+                {
+                    if (!came_from.ContainsKey(neighbors))
                     {
-                        AddReached(neighbors);
-                        frontier.Enqueue(neighbors, 0);
-                        tM.SetTile(neighbors, tiles[0]);
-                        came_from[neighbors] = current;
-                        //dicTionary.Add(neighbors) = current;
+                        //if next not in _came_from:
+                        if (neighbors != null && tM.GetSprite(neighbors) != null)
+                        {
+
+                            AddReached(neighbors);
+                            cost_so_far[neighbors] = new_cost;
+                            float priority = new_cost; 
+                            frontier.Enqueue(neighbors,priority);
+                            tM.SetTile(neighbors, tileFill);
+                            came_from.Add(neighbors,current);
+                            //dicTionary.Add(neighbors) = current;
+                        }
                     }
                 }
+                
             }
         }
+
         DrawPath(mouseStuff._end);
+
     }
 
     List<Vector3Int> getNeighbours(Vector3Int current)
@@ -114,65 +127,36 @@ public class Djztrack : MonoBehaviour
     public void DrawPath(Vector3Int xd)
     {
         _previous = came_from[mouseStuff._end];
-        mouseStuff.tM.SetTile(mouseStuff._end, tiles[1]);
+        
+
+       mouseStuff.tM.SetTile(mouseStuff._end, tile1);
 
         while (_previous != mouseStuff._start)
         {
-            mouseStuff.tM.SetTile(_previous, tiles[1]);
+            mouseStuff.tM.SetTile(_previous, tile1);
             _previous = came_from[_previous];
         }
     }
 
     private int Costos(Vector3Int neighbour)
     {
+        
 
-        //Obtengo el Sprite del Tile
-        // TileBase TileBase =mouseStuff.tM.GetTile(Vector3Int.RoundToInt(tileCord));
-        //Lo Añado al Diccionario????, pero cómo defino el valor de double dependiendo de la coordenada?
-        //costo.Add(TileBase.ToString(), 0);
-        //costo =[("isometric_pixel_0163", 0)];
-        //if(tM.GetTile(neighbour)==null)
-
-        //costo.Add("isometric_pixel_0163", 0);
-        //costo.Add("isometric_pixel_0168", 2);
-        // costo.Add("isometric_pixel_0171", 5);
-
-        //Obtengo la coordenada del Tile
-        TileBase tile = tM.GetTile(neighbour);
-
-        //Comparo el tile que obtuve con el Diccionario que tengo y regreso el valor de dicho tile
-        if (TileCost.TryGetValue(tile,out int cost))
-        {
-            return cost;
-        }
-
-
-        return 10000;
-
-
-    }
-
-
-    /*
-    public List<TileBase> TileBases;
-
-
-    private int GetCost(Vector3Int neighbour)
-    {
-        if (tiles.GetTile(neighbour) == TileBases[0])
+        if (tM.GetTile(neighbour) == pasto)
         {
             return 1;
         }
-        if (tiles.GetTile(neighbour) == TileBases[1])
+        if (tM.GetTile(neighbour) == arena)
         {
             return 30;
         }
-        if (tiles.GetTile(neighbour) == TileBases[2])
+        if (tM.GetTile(neighbour) == veneno)
         {
             return 100;
         }
 
         return 10000;
-    }*/
-
+        
+    }  
 }
+
