@@ -7,7 +7,9 @@ public class MouseStuff : MonoBehaviour
 {
     public Tilemap tM;
     public FloodFill fF;
-   public Djztrack Dj;
+   public Djztrack Dj;    
+    public Heurística He;
+    public AShootingStar ST;
     public Tile tile1; //tileStart
     public Tile tileJimmyM; //tileEnd
     public Tile tileFill;
@@ -46,10 +48,18 @@ public class MouseStuff : MonoBehaviour
            // Debug.Log(location + "Origen");
             fF.startingPoint = location;
             Dj.startingPoint = location;
+            He.startingPoint = location;
+            ST.startingPoint = location;
            // Dj.tileCord = location;
             tM.SetTile(location, tileJimmyM);
             _start = location;
 
         }
+
+        /*
+        if(Input.GetKeyDown(KeyCode.Space))
+        {
+            ST.StartCoroutine(ST.CumJar());
+        }*/
     }
 }

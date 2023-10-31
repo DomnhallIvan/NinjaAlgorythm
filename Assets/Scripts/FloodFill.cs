@@ -16,7 +16,7 @@ public class FloodFill : MonoBehaviour
     public Tile tileFill;
     public Tile tileMontain;
     private Dictionary<Vector3Int, Vector3Int> came_from = new Dictionary<Vector3Int, Vector3Int>();
-    private Dictionary<Vector3Int, Vector3Int> cost_so_far = new Dictionary<Vector3Int, Vector3Int>();
+    private Dictionary<Vector3Int, int> cost_so_far = new Dictionary<Vector3Int, int>();
     private Dictionary<string, double> costo = new Dictionary<string, double>();
     private Vector3Int _previous;
 
@@ -35,7 +35,7 @@ public class FloodFill : MonoBehaviour
     void CumJar()
     {
         frontier.Enqueue(startingPoint,0);
-        cost_so_far.ContainsKey(startingPoint);
+        cost_so_far[startingPoint] = 0;
         //Funcion que devuelva lista de Vector3.int, a partir de current
         while (frontier.Count > 0)
         {
@@ -49,8 +49,6 @@ public class FloodFill : MonoBehaviour
 
             foreach (Vector3Int neighbors in getNeighbours(current))
             {
-                
-
                 if ( !came_from.ContainsKey(neighbors))
                 {
                     //if next not in _came_from:

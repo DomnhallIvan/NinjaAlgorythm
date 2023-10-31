@@ -6,7 +6,7 @@ using static UnityEditor.FilePathAttribute;
 using ESarkis;
 using static UnityEditor.Experimental.GraphView.GraphView;
 
-public class Djztrack : MonoBehaviour
+public class AShootingStar : MonoBehaviour
 {
 
     public Tilemap tM;
@@ -18,13 +18,18 @@ public class Djztrack : MonoBehaviour
     public Set reached = new Set();
     public TileBase pasto;
     public TileBase arena;
-    public TileBase veneno;  
+    public TileBase veneno;
+
+
+
     private Dictionary<Vector3Int, Vector3Int> came_from = new Dictionary<Vector3Int, Vector3Int>();
     private Dictionary<Vector3Int, int> cost_so_far = new Dictionary<Vector3Int, int>();
-    public Dictionary<TileBase, int> TileCost= new Dictionary<TileBase, int>();  
+    public Dictionary<TileBase, int> TileCost = new Dictionary<TileBase, int>();
     private Vector3Int _previous;
 
     public MouseStuff mouseStuff;
+
+    public float delay;
 
     private void Start()
     {
@@ -37,56 +42,56 @@ public class Djztrack : MonoBehaviour
 
     private void Update()
     {
-
         if (Input.GetKeyDown(KeyCode.Space))
         {
             CumJar();
             Debug.Log("IMBOUTTOCUM");
-           
-        }
 
+        }
     }
+    
     void CumJar()
     {
         came_from.Add(startingPoint, startingPoint);
         //came_from.Add(mouseStuff._end, mouseStuff._end);
         frontier.Enqueue(startingPoint, 0);
-        //cost_so_far.Add(startingPoint,0);
         cost_so_far[startingPoint] = 0;
         //Funcion que devuelva lista de Vector3.int, a partir de current
         while (frontier.Count > 0)
         {
             Vector3Int current = frontier.Dequeue();
+
+            //Aquí pongo Early Exit
             if (current == mouseStuff._end)
             {
                 break;
             }
+
             foreach (Vector3Int neighbors in getNeighbours(current))
             {
-                //Aquí pongo Early Exit
-               
-                if (!came_from.ContainsKey(neighbors))
+                if (neighbors == null)
                 {
-                    var new_cost = cost_so_far[current] + Costos(neighbors);
-                    if (!cost_so_far.ContainsKey(neighbors) || new_cost < cost_so_far[current])
+                    continue;
+                }
+                var new_cost = cost_so_far[current] + Costos(neighbors);
+                if (!cost_so_far.ContainsKey(neighbors) || new_cost < cost_so_far[current])
+                {
+                    if (!came_from.ContainsKey(neighbors))
                     {
                         //if next not in _came_from:
                         if (neighbors != null && tM.GetSprite(neighbors) != null)
                         {
 
-                            cost_so_far[neighbors] = new_cost;
-                            float priority = new_cost;
                             AddReached(neighbors);
+                            cost_so_far[neighbors] = new_cost;
+                            float priority = Heuristic(mouseStuff._end, neighbors)+new_cost;
                             frontier.Enqueue(neighbors, priority);
-                            
-                            came_from.Add(neighbors, current);
                             tM.SetTile(neighbors, tileFill);
+                            came_from.Add(neighbors, current);
                             //dicTionary.Add(neighbors) = current;
                         }
                     }
-                }
-                    
-                
+                }                  
             }
         }
 
@@ -122,7 +127,7 @@ public class Djztrack : MonoBehaviour
     public void DrawPath(Vector3Int xd)
     {
         _previous = came_from[mouseStuff._end];
-       mouseStuff.tM.SetTile(mouseStuff._end, tile1);
+        mouseStuff.tM.SetTile(mouseStuff._end, tile1);
 
         while (_previous != mouseStuff._start)
         {
@@ -133,7 +138,7 @@ public class Djztrack : MonoBehaviour
 
     private int Costos(Vector3Int neighbour)
     {
-        
+
 
         if (tM.GetTile(neighbour) == pasto)
         {
@@ -149,7 +154,14 @@ public class Djztrack : MonoBehaviour
         }
 
         return 10000;
-        
-    }  
+
+    }
+
+    private float Heuristic(Vector3Int a, Vector3Int b)
+    {
+        //DOCTOR MANHATAN REFERENCE????????
+        Vector3Int jijija = new Vector3Int(a.x - b.x, a.y - b.y, 0);
+        return jijija.magnitude;
+    }
 }
 
