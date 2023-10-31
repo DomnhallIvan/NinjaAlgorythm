@@ -4221,6 +4221,8 @@ GameObject:
   - component: {fileID: 190804949}
   - component: {fileID: 190804951}
   - component: {fileID: 190804952}
+  - component: {fileID: 190804953}
+  - component: {fileID: 190804954}
   m_Layer: 0
   m_Name: FloodFill
   m_TagString: Untagged
@@ -4297,6 +4299,51 @@ MonoBehaviour:
   arena: {fileID: 11400000, guid: fd255189f39922240abe49e1c0b77410, type: 2}
   veneno: {fileID: 11400000, guid: bd2858b920c1cdc49b4dd2cdb2526e96, type: 2}
   mouseStuff: {fileID: 519420033}
+--- !u!114 &190804953
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 190804948}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7b10d5b2abd867439aa1100e0383ab4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tM: {fileID: 114671753}
+  startingPoint: {x: 0, y: 0, z: 0}
+  tileCord: {x: 0, y: 0, z: 0}
+  tile1: {fileID: 11400000, guid: 5715cb2604d51b14181f0268de22162a, type: 2}
+  tileFill: {fileID: 11400000, guid: 9ccdb69a9294b1f4b9c60c40dc5a3e7c, type: 2}
+  reached: {fileID: 190804951}
+  pasto: {fileID: 11400000, guid: 10f756de48c629d4e8727b1bdc813c2d, type: 2}
+  arena: {fileID: 11400000, guid: fd255189f39922240abe49e1c0b77410, type: 2}
+  veneno: {fileID: 11400000, guid: bd2858b920c1cdc49b4dd2cdb2526e96, type: 2}
+  mouseStuff: {fileID: 519420033}
+--- !u!114 &190804954
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 190804948}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7d32fdaac811964f92f61963456ca84, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tM: {fileID: 114671753}
+  startingPoint: {x: 0, y: 0, z: 0}
+  tileCord: {x: 0, y: 0, z: 0}
+  tile1: {fileID: 11400000, guid: 5715cb2604d51b14181f0268de22162a, type: 2}
+  tileFill: {fileID: 11400000, guid: 9ccdb69a9294b1f4b9c60c40dc5a3e7c, type: 2}
+  reached: {fileID: 190804951}
+  pasto: {fileID: 11400000, guid: 10f756de48c629d4e8727b1bdc813c2d, type: 2}
+  arena: {fileID: 11400000, guid: fd255189f39922240abe49e1c0b77410, type: 2}
+  veneno: {fileID: 11400000, guid: bd2858b920c1cdc49b4dd2cdb2526e96, type: 2}
+  mouseStuff: {fileID: 519420033}
+  delay: 0
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -4397,6 +4444,8 @@ MonoBehaviour:
   tM: {fileID: 114671753}
   fF: {fileID: 190804949}
   Dj: {fileID: 190804952}
+  He: {fileID: 190804953}
+  ST: {fileID: 190804954}
   tile1: {fileID: 11400000, guid: 5715cb2604d51b14181f0268de22162a, type: 2}
   tileJimmyM: {fileID: 11400000, guid: fd22942ca353b1b4bbb8d01a0fee7142, type: 2}
   tileFill: {fileID: 11400000, guid: 9ccdb69a9294b1f4b9c60c40dc5a3e7c, type: 2}

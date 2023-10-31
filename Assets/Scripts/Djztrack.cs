@@ -63,7 +63,7 @@ public class Djztrack : MonoBehaviour
             }
             foreach (Vector3Int neighbors in getNeighbours(current))
             {
-                //Aquí pongo Early Exit
+
                
                 if (!came_from.ContainsKey(neighbors))
                 {
@@ -78,9 +78,9 @@ public class Djztrack : MonoBehaviour
                             float priority = new_cost;
                             AddReached(neighbors);
                             frontier.Enqueue(neighbors, priority);
-                            
-                            came_from.Add(neighbors, current);
                             tM.SetTile(neighbors, tileFill);
+                            came_from.Add(neighbors, current);
+                          
                             //dicTionary.Add(neighbors) = current;
                         }
                     }
@@ -90,7 +90,8 @@ public class Djztrack : MonoBehaviour
             }
         }
 
-        DrawPath(mouseStuff._end);
+        DrawPath();
+        tM.SetTile(mouseStuff._end, tile1);
 
     }
 
@@ -119,7 +120,7 @@ public class Djztrack : MonoBehaviour
     }
 
 
-    public void DrawPath(Vector3Int xd)
+    public void DrawPath()
     {
         _previous = came_from[mouseStuff._end];
        mouseStuff.tM.SetTile(mouseStuff._end, tile1);
