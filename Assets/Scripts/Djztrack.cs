@@ -2,9 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
-using static UnityEditor.FilePathAttribute;
 using ESarkis;
-using static UnityEditor.Experimental.GraphView.GraphView;
 
 public class Djztrack : MonoBehaviour
 {
@@ -37,7 +35,6 @@ public class Djztrack : MonoBehaviour
 
     private void Update()
     {
-
         if (Input.GetKeyDown(KeyCode.Space))
         {
             CumJar();
@@ -48,12 +45,12 @@ public class Djztrack : MonoBehaviour
     }
     void CumJar()
     {
-                //came_from.Add(mouseStuff._end, mouseStuff._end);  
-        came_from.Add(startingPoint, startingPoint);
-      
-        //cost_so_far.Add(startingPoint,0);
+          
         frontier.Enqueue(startingPoint, 0);
-        cost_so_far[startingPoint] = 0;
+        //came_from.Add(mouseStuff._end, mouseStuff._end);  
+        // came_from[startingPoint]=startingPoint;
+        came_from.Add(startingPoint, startingPoint);
+        cost_so_far.Add(startingPoint, 0);
         //Funcion que devuelva lista de Vector3.int, a partir de current
         while (frontier.Count > 0)
         {
@@ -62,9 +59,9 @@ public class Djztrack : MonoBehaviour
             //Early Exit
             if (current == mouseStuff._end)
             {
-                break;
-                //Debug.Log("Ya llegue");
+                break;                
             }
+
             foreach (Vector3Int neighbors in getNeighbours(current))
             {
                 if (!came_from.ContainsKey(neighbors))
@@ -75,14 +72,11 @@ public class Djztrack : MonoBehaviour
                         //if next not in _came_from:
                         if (neighbors != null && tM.GetSprite(neighbors) != null)
                         {
-
                             cost_so_far[neighbors] = new_cost;
                             float priority = new_cost;                          
-                            frontier.Enqueue(neighbors, priority);
-                            AddReached(neighbors);
-                            tM.SetTile(neighbors, tileFill);
+                            frontier.Enqueue(neighbors, priority);                           
                             came_from.Add(neighbors, current);
-                          
+                            tM.SetTile(neighbors, tileFill);
                             //dicTionary.Add(neighbors) = current;
                         }
                     }
@@ -112,13 +106,6 @@ public class Djztrack : MonoBehaviour
         vecinos.Add(arriba);
 
         return vecinos;
-    }
-
-
-    //Aquí tengo que añadir los vecinos que alcance para no tomarlos en cuenta en siguientes pruebas
-    public void AddReached(Vector3Int Reached)
-    {
-        reached.set.Add(Reached);
     }
 
 
