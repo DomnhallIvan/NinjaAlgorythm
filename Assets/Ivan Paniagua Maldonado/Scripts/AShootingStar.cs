@@ -8,37 +8,19 @@ using static UnityEditor.Experimental.GraphView.GraphView;
 
 public class AShootingStar : MonoBehaviour
 {
-
-    public Tilemap tM;
-    [SerializeField] private PriorityQueue<Vector3Int> frontier = new PriorityQueue<Vector3Int>();
-    public Vector3Int startingPoint;
-    public Vector3Int tileCord;
-    public Tile tile1;
-    public Tile tileFill;
-    public Set reached = new Set();
-    public TileBase pasto;
-    public TileBase arena;
-    public TileBase veneno;
-
-
-
-    private Dictionary<Vector3Int, Vector3Int> came_from = new Dictionary<Vector3Int, Vector3Int>();
-    private Dictionary<Vector3Int, int> cost_so_far = new Dictionary<Vector3Int, int>();
-    public Dictionary<TileBase, int> TileCost = new Dictionary<TileBase, int>();
-    private Vector3Int _previous;
-
     public MouseStuff mouseStuff;
-
-    public float delay;
-
-    private void Start()
-    {
-        //&came_from.Add(startingPoint,startingPoint);
-        //cost_so_far.Add(startingPoint, 0);
-        TileCost.Add(pasto, 1);
-        TileCost.Add(arena, 5);
-        TileCost.Add(veneno, 8);
-    }
+    [SerializeField] private Tilemap _tM;
+    [SerializeField] private Tile _tile1;
+    [SerializeField] private Tile _tileFill;
+    public Set reached = new Set();
+    [SerializeField] private TileBase _pasto;
+    [SerializeField] private TileBase _arena;
+    [SerializeField] private TileBase _veneno;
+    [SerializeField] private PriorityQueue<Vector3Int> _frontier = new PriorityQueue<Vector3Int>();
+    private Dictionary<Vector3Int, Vector3Int> _came_from = new Dictionary<Vector3Int, Vector3Int>();
+    private Dictionary<Vector3Int, float> _cost_so_far = new Dictionary<Vector3Int, float>();
+    private Vector3Int _previous;
+    public Vector3Int startingPoint; //Este será asignado por el MouseStuff
 
     private void Update()
     {
@@ -52,14 +34,14 @@ public class AShootingStar : MonoBehaviour
     
     void CumJar()
     {
-        came_from.Add(startingPoint, startingPoint);
+        _came_from.Add(startingPoint, startingPoint);
         //came_from.Add(mouseStuff._end, mouseStuff._end);
-        frontier.Enqueue(startingPoint, 0);
-        cost_so_far[startingPoint] = 0;
+        _frontier.Enqueue(startingPoint, 0);
+        _cost_so_far[startingPoint] = 0;
         //Funcion que devuelva lista de Vector3.int, a partir de current
-        while (frontier.Count > 0)
+        while (_frontier.Count > 0)
         {
-            Vector3Int current = frontier.Dequeue();
+            Vector3Int current = _frontier.Dequeue();
 
             //Aquí pongo Early Exit
             if (current == mouseStuff._end)
@@ -73,21 +55,21 @@ public class AShootingStar : MonoBehaviour
                 {
                     continue;
                 }
-                var new_cost = cost_so_far[current] + Costos(neighbors);
-                if (!cost_so_far.ContainsKey(neighbors) || new_cost < cost_so_far[current])
+                var new_cost = _cost_so_far[current] + Costos(neighbors);
+                if (!_cost_so_far.ContainsKey(neighbors) || new_cost < _cost_so_far[current])
                 {
-                    if (!came_from.ContainsKey(neighbors))
+                    if (!_came_from.ContainsKey(neighbors))
                     {
                         //if next not in _came_from:
-                        if (neighbors != null && tM.GetSprite(neighbors) != null)
+                        if (neighbors != null && _tM.GetSprite(neighbors) != null)
                         {
 
                             AddReached(neighbors);
-                            cost_so_far[neighbors] = new_cost;
+                            _cost_so_far[neighbors] = new_cost;
                             float priority = Heuristic(mouseStuff._end, neighbors)+new_cost;
-                            frontier.Enqueue(neighbors, priority);
-                            tM.SetTile(neighbors, tileFill);
-                            came_from.Add(neighbors, current);
+                            _frontier.Enqueue(neighbors, priority);
+                            _tM.SetTile(neighbors, _tileFill);
+                            _came_from.Add(neighbors, current);
                             //dicTionary.Add(neighbors) = current;
                         }
                     }
@@ -126,35 +108,32 @@ public class AShootingStar : MonoBehaviour
 
     public void DrawPath(Vector3Int xd)
     {
-        _previous = came_from[mouseStuff._end];
-        mouseStuff.tM.SetTile(mouseStuff._end, tile1);
+        _previous = _came_from[mouseStuff._end];
+        mouseStuff.tM.SetTile(mouseStuff._end, _tile1);
 
         while (_previous != mouseStuff._start)
         {
-            mouseStuff.tM.SetTile(_previous, tile1);
-            _previous = came_from[_previous];
+            mouseStuff.tM.SetTile(_previous, _tile1);
+            _previous = _came_from[_previous];
         }
     }
 
     private int Costos(Vector3Int neighbour)
     {
-
-
-        if (tM.GetTile(neighbour) == pasto)
+        if (_tM.GetTile(neighbour) == _pasto)
         {
             return 1;
         }
-        if (tM.GetTile(neighbour) == arena)
+        if (_tM.GetTile(neighbour) == _arena)
         {
             return 30;
         }
-        if (tM.GetTile(neighbour) == veneno)
+        if (_tM.GetTile(neighbour) == _veneno)
         {
             return 100;
         }
 
         return 10000;
-
     }
 
     private float Heuristic(Vector3Int a, Vector3Int b)

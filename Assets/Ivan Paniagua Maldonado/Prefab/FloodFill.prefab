@@ -1,0 +1,129 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3192151873245174517
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8575551802662267650}
+  - component: {fileID: 3227505972204713738}
+  - component: {fileID: 8159022975011526183}
+  - component: {fileID: 8159022975011526182}
+  - component: {fileID: 8159022975011526181}
+  - component: {fileID: 6675804506166408900}
+  m_Layer: 0
+  m_Name: FloodFill
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8575551802662267650
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3192151873245174517}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 4.3357263, y: -0.31467932, z: 0.089335546}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3227505972204713738
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3192151873245174517}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 21d9c9ae0453e8f4f8277600b6414354, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  set: []
+--- !u!114 &8159022975011526183
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3192151873245174517}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 65724822f34cfc049b39452899935cf9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mouseStuff: {fileID: 0}
+  _tM: {fileID: 0}
+  _tile1: {fileID: 11400000, guid: 5715cb2604d51b14181f0268de22162a, type: 2}
+  _tileFill: {fileID: 11400000, guid: 9ccdb69a9294b1f4b9c60c40dc5a3e7c, type: 2}
+  reached: {fileID: 3227505972204713738}
+  _pasto: {fileID: 11400000, guid: 10f756de48c629d4e8727b1bdc813c2d, type: 2}
+  _arena: {fileID: 11400000, guid: fd255189f39922240abe49e1c0b77410, type: 2}
+  _veneno: {fileID: 11400000, guid: bd2858b920c1cdc49b4dd2cdb2526e96, type: 2}
+  startingPoint: {x: 0, y: 0, z: 0}
+--- !u!114 &8159022975011526182
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3192151873245174517}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7b10d5b2abd867439aa1100e0383ab4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mouseStuff: {fileID: 0}
+  _tM: {fileID: 0}
+  _tile1: {fileID: 11400000, guid: 5715cb2604d51b14181f0268de22162a, type: 2}
+  _tileFill: {fileID: 11400000, guid: 9ccdb69a9294b1f4b9c60c40dc5a3e7c, type: 2}
+  reached: {fileID: 3227505972204713738}
+  startingPoint: {x: 0, y: 0, z: 0}
+--- !u!114 &8159022975011526181
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3192151873245174517}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7d32fdaac811964f92f61963456ca84, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mouseStuff: {fileID: 0}
+  _tM: {fileID: 0}
+  _tile1: {fileID: 0}
+  _tileFill: {fileID: 0}
+  reached: {fileID: 3227505972204713738}
+  _pasto: {fileID: 0}
+  _arena: {fileID: 0}
+  _veneno: {fileID: 0}
+  startingPoint: {x: 0, y: 0, z: 0}
+--- !u!114 &6675804506166408900
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3192151873245174517}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2556fe5806b56ed43940ecad18967996, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mouseStuff: {fileID: 0}
+  _tM: {fileID: 0}
+  _tile1: {fileID: 11400000, guid: 5715cb2604d51b14181f0268de22162a, type: 2}
+  _tileFill: {fileID: 11400000, guid: 9ccdb69a9294b1f4b9c60c40dc5a3e7c, type: 2}
+  reached: {fileID: 3227505972204713738}
+  startingPoint: {x: 0, y: 0, z: 0}
