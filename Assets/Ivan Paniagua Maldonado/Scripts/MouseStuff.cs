@@ -24,6 +24,7 @@ public class MouseStuff : MonoBehaviour
         location.z = 0;
 
 
+
         if(Input.GetMouseButtonDown(0) && tM.GetSprite(location) != null)
         {
            if(_end != location && tM.GetSprite(location) != null)
@@ -39,7 +40,7 @@ public class MouseStuff : MonoBehaviour
         
 
 
-        if (Input.GetMouseButtonDown(1)&&tM.GetSprite(location)!=null)
+        if (tM.GetSprite(location)!=null)
         {
             if (_start != location && tM.GetSprite(location) != null)
             {
