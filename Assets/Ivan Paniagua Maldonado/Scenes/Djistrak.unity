@@ -4504,6 +4504,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tM: {fileID: 114671753}
+  atM: {fileID: 498436086}
   fF: {fileID: 8159022974822737408}
   Dj: {fileID: 190804952}
   He: {fileID: 8159022974822737410}
@@ -4513,6 +4514,7 @@ MonoBehaviour:
   tileFill: {fileID: 11400000, guid: 10f756de48c629d4e8727b1bdc813c2d, type: 2}
   _start: {x: 0, y: 0, z: 0}
   _end: {x: 0, y: 0, z: 0}
+  startSet: 0
 --- !u!1 &913397373
 GameObject:
   m_ObjectHideFlags: 0
@@ -4590,6 +4592,18 @@ PrefabInstance:
       propertyPath: _tM
       value: 
       objectReference: {fileID: 114671753}
+    - target: {fileID: 8159022975011526183, guid: e8df6766bb49f76479af059144264611, type: 3}
+      propertyPath: _taM
+      value: 
+      objectReference: {fileID: 498436086}
+    - target: {fileID: 8159022975011526183, guid: e8df6766bb49f76479af059144264611, type: 3}
+      propertyPath: _tile1
+      value: 
+      objectReference: {fileID: 11400000, guid: fd22942ca353b1b4bbb8d01a0fee7142, type: 2}
+    - target: {fileID: 8159022975011526183, guid: e8df6766bb49f76479af059144264611, type: 3}
+      propertyPath: _tileFill
+      value: 
+      objectReference: {fileID: 11400000, guid: 5715cb2604d51b14181f0268de22162a, type: 2}
     - target: {fileID: 8159022975011526183, guid: e8df6766bb49f76479af059144264611, type: 3}
       propertyPath: m_Enabled
       value: 1

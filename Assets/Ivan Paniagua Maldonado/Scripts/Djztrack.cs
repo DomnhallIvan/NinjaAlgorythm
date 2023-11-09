@@ -7,7 +7,8 @@ using ESarkis;
 public class Djztrack : MonoBehaviour
 {
     public MouseStuff mouseStuff;
-    [SerializeField] private Tilemap _tM;  
+    [SerializeField] private Tilemap _tM;
+    [SerializeField] private Tilemap _taM;
     [SerializeField] private Tile _tile1;
     [SerializeField] private Tile _tileFill;
     public Set reached = new Set();
@@ -23,10 +24,11 @@ public class Djztrack : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        //if (Input.GetKeyDown(KeyCode.Space))
+        if(mouseStuff.startSet==true)
         {
             CumJar();
-            Debug.Log("IMBOUTTOCUM");
+           // Debug.Log("IMBOUTTOCUM");
 
         }
 
@@ -63,7 +65,7 @@ public class Djztrack : MonoBehaviour
                             float priority = new_cost;
                             _frontier.Enqueue(neighbors, priority);
                             _came_from[neighbors] = current;
-                            _tM.SetTile(neighbors, _tileFill);
+                           // _taM.SetTile(neighbors, _tileFill);
 
                         }
                     }
@@ -73,6 +75,7 @@ public class Djztrack : MonoBehaviour
         }
 
         DrawPath(mouseStuff._end);
+
     }
 
     List<Vector3Int> getNeighbours(Vector3Int current)
@@ -96,13 +99,15 @@ public class Djztrack : MonoBehaviour
     {
         //Hago el caminito
         _previous = _came_from[xd];
-        mouseStuff.tM.SetTile(xd, _tile1);
+        mouseStuff.atM.SetTile(xd, _tileFill);
+        mouseStuff.atM.SetTile(startingPoint, _tile1);
 
         while (_previous != mouseStuff._start)
         {
-            mouseStuff.tM.SetTile(_previous, _tile1);
+            mouseStuff.atM.SetTile(_previous, _tileFill);
             _previous = _came_from[_previous];
         }
+        //mouseStuff.atM.ClearAllTiles();
     }
 
     private int Costos(Vector3Int neighbour)
