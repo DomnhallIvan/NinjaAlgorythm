@@ -4323,7 +4323,7 @@ TilemapRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
   m_MaxChunkCount: 16
@@ -4509,9 +4509,9 @@ MonoBehaviour:
   Dj: {fileID: 190804952}
   He: {fileID: 8159022974822737410}
   ST: {fileID: 8159022974822737409}
-  tile1: {fileID: 11400000, guid: 5715cb2604d51b14181f0268de22162a, type: 2}
-  tileJimmyM: {fileID: 11400000, guid: fd22942ca353b1b4bbb8d01a0fee7142, type: 2}
-  tileFill: {fileID: 11400000, guid: 10f756de48c629d4e8727b1bdc813c2d, type: 2}
+  tile1: {fileID: 11400000, guid: 8348e6c9f7cc8214c968ff9599505b1b, type: 2}
+  tileJimmyM: {fileID: 11400000, guid: fab109f1d703e7e41ac3af87cb31a803, type: 2}
+  tileFill: {fileID: 11400000, guid: ccb4cc7ae6de3774e84bc649a76cd689, type: 2}
   _start: {x: 0, y: 0, z: 0}
   _end: {x: 0, y: 0, z: 0}
   startSet: 0
@@ -4630,11 +4630,11 @@ PrefabInstance:
     - target: {fileID: 8159022975011526183, guid: e8df6766bb49f76479af059144264611, type: 3}
       propertyPath: _tile1
       value: 
-      objectReference: {fileID: 11400000, guid: fd22942ca353b1b4bbb8d01a0fee7142, type: 2}
+      objectReference: {fileID: 11400000, guid: fab109f1d703e7e41ac3af87cb31a803, type: 2}
     - target: {fileID: 8159022975011526183, guid: e8df6766bb49f76479af059144264611, type: 3}
       propertyPath: _tileFill
       value: 
-      objectReference: {fileID: 11400000, guid: 5715cb2604d51b14181f0268de22162a, type: 2}
+      objectReference: {fileID: 11400000, guid: 8348e6c9f7cc8214c968ff9599505b1b, type: 2}
     - target: {fileID: 8159022975011526183, guid: e8df6766bb49f76479af059144264611, type: 3}
       propertyPath: m_Enabled
       value: 1
